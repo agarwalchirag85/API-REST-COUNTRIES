@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import Country from './Country';
+import React,{useState} from "react";
+import { Switch,Route ,useLocation} from 'react-router-dom';
+import Countrydetails from './Countrydetails';
+import "antd/dist/antd.css";
+import ThemeContext from "./context/themeContext";
 
 function App() {
+
+  const [theme, setState] = useState("light");
+   const handleThemeToggle = (val) => {
+    let root = document.getElementsByTagName("body");
+    if (val === "light") {
+      root[0].setAttribute("style", "background:hsl(0, 0%, 98%);");
+    } else {
+      root[0].setAttribute("style", "background:hsl(207, 26%, 17%)");
+    }
+
+    setState(val);
+  };
+  
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider
+    value={{
+      theme: theme,
+      onThemeChange: handleThemeToggle,
+    }}
+  >
+      <Switch>
+      <Route path="/Countrydetails">
+        <Countrydetails {...location.state}/>
+      </Route>
+      <Route path="/">
+        <Country/>
+      </Route>
+      </Switch>
+      </ThemeContext.Provider>
   );
 }
 
