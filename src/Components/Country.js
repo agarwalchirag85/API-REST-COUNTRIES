@@ -83,7 +83,7 @@ class Country extends Component{
       <Menu.Item key="americas">Americas</Menu.Item>
       <Menu.Item key="asia" >Asia</Menu.Item>
       <Menu.Item key="europe" >Europe</Menu.Item>
-      <Menu.Item key="oceania" >oceania</Menu.Item>
+      <Menu.Item key="oceania" >Oceania</Menu.Item>
       </Menu>);
         
         return (
