@@ -32,17 +32,14 @@ Users should be able to:
 
 ### Screenshot
 
-![image](https://user-images.githubusercontent.com/35498957/120929148-87ada480-c705-11eb-9f14-00588335bd90.png)
+![image](image1.png)
 
-![image](https://user-images.githubusercontent.com/35498957/120929159-8f6d4900-c705-11eb-9d27-c8ff3b5b02ad.png)
+![image](image2.png)
 
-![image](https://user-images.githubusercontent.com/35498957/120929420-96e12200-c706-11eb-92dc-9f345abb3e2e.png)
+![image](image3.png)
 
-![image](https://user-images.githubusercontent.com/35498957/120929430-9ea0c680-c706-11eb-9cb1-1bb937f16ee3.png)
+![image](image4.png)
 
-![image](https://user-images.githubusercontent.com/35498957/120929460-b8420e00-c706-11eb-9f60-69a6b68ef6b1.png)
-
-![image](https://user-images.githubusercontent.com/35498957/120929470-c6902a00-c706-11eb-8c31-08a753f3fcf5.png)
 
 ### Links
 - Live Site URL: [restapicountrychirag.netlify.app](https://restapicountrychirag.netlify.app/)
