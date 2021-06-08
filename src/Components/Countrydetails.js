@@ -3,43 +3,86 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Header from './Header';
+import ThemeContext from "../context/themeContext";
+import './Countrydetails.css';
 
 class Countrydetails extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = this.props.location.state.details;		
+		this.state = {states:this.props.location.state.details, countrylist: []};		
+				
 	};
-	
-	getBtn = (country) => {
+
+	componentDidMount = async() => {
+		await this.performApicallcountryname();
+   };
+
+	performApicallcountryname=async()=>
+    {
+		let arr=[];let temp=[];
+        this.state.states.borders.map((country, idx) => arr.push(country));
+		for(let i=0;i<arr.length;i++){
+        let response=await fetch('https://restcountries.eu/rest/v2/alpha/'+arr[i]);
+        response = await response.json();
+		temp.push(response.name);
+		}
+		console.log(temp);
+		this.setState({countrylist:temp});
+    }
+
+	getBtn = (country,idx) => {
+		const styles3 ={color:"#fff",background:"#1b2b33"};
+        const styles4 ={color:"#1b2b33",background:"#fff"};
 		return (
-			<Button className="border-btn" type="primary" onClick={() => this.props.history.push('/')}>
-				{country}
+			<ThemeContext.Consumer>
+			{(themeContext) => (	
+			<Button className={
+				themeContext.theme === "light" ? "border-btn-light" : "border-btn-dark"
+			  } type="primary" onClick={() => this.props.history.push('/')} style={themeContext.theme === "light" ? styles4:styles3} >
+				{this.state.countrylist[idx]}
 			</Button>
+			)}
+			</ThemeContext.Consumer>
 		);
 	};
 
 	render() {
-	const details = this.state;
+	    const details = this.state.states;
+		const styles3 ={color:"#fff",background:"#1b2b33"};
+        const styles4 ={color:"#1b2b33",background:"#fff"};
 		console.log(details, details.name);
 		return (
 			<>
-				<Header history={this.props.history} />
-				<div className="country-details-container">
+			<ThemeContext.Consumer>
+			{(themeContext) => (
+             <div
+             className={
+               themeContext.theme === "light" ? "main-light" : "main-dark"
+             }
+           >
+            <Header  history={this.props.history} theme={themeContext.theme}
+              onThemeChange={themeContext.onThemeChange} />
+				<div  className={
+               themeContext.theme === "light" ? "country-details-container-light" : "country-details-container-dark"
+             }>
 					<div className="back-btn">
 						<Button
 							type="primary"
 							icon={<ArrowLeftOutlined />}
 							onClick={() => this.props.history.push('/')}
+							style={themeContext.theme === "light" ? styles4:styles3}
 						>
 							Back
 						</Button>
 					</div>
-					<div className="country-details-content">
+					<div  className={
+               themeContext.theme === "light" ? "country-details-content-light" : "country-details-content-dark"
+             }>
 						<div className="content-img">
 							<img src={details.flag} alt={details.name} />
 						</div>
 						<div className="content-details">
-							<h2>{details.name}</h2>
+							<h2 style={themeContext.theme === "light" ? styles4:styles3}>{details.name}</h2>
 
 							<div className="text-desc">
 								<div className="textLeft">
@@ -94,15 +137,17 @@ class Countrydetails extends React.Component {
 							<div className="country-text">
 								<div className="text-title">Border Countries :</div>
 								<div className="border-country-btn">
-									{details.borders.map((country, idx) => this.getBtn(country))}
+									{details.borders.map((country, idx) =>this.getBtn(country,idx))}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				</div>
+			)}
+			</ThemeContext.Consumer>
 			</>
-		);
-	}
+		)}
 }
 
 export default withRouter(Countrydetails);

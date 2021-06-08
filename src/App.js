@@ -1,8 +1,8 @@
 import './App.css';
-import Country from './Country';
+import Country from './Components/Country';
 import React,{useState} from "react";
 import { Switch,Route ,useLocation} from 'react-router-dom';
-import Countrydetails from './Countrydetails';
+import Countrydetails from './Components/Countrydetails';
 import "antd/dist/antd.css";
 import ThemeContext from "./context/themeContext";
 
