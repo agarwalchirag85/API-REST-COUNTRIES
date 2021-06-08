@@ -45,9 +45,7 @@ Users should be able to:
 ![image](https://user-images.githubusercontent.com/35498957/120929470-c6902a00-c706-11eb-8c31-08a753f3fcf5.png)
 
 ### Links
-
-- Solution URL: [frontend Mentor Solution](https://www.frontendmentor.io/solutions/reactjs-material-ui-debouncing-flexbox-grid-dark-mode-oYUHC4EJZ)
-- Live Site URL: [countries-p.netlify.app](https://countries-p.netlify.app/)
+- Live Site URL: [restapicountrychirag.netlify.app](https://restapicountrychirag.netlify.app/)
 
 ## My process
 
